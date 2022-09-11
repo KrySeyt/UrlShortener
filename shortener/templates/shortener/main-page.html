@@ -1,0 +1,15 @@
+{% extends 'shortener/base.html' %}
+
+{% block body %}
+    <div class="w-50 position-absolute top-50 start-50 translate-middle">
+        <form class="d-flex" action="{% url 'add-url' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Полная ссылка" value="{{ full_url }}" aria-label="Search" name="full-url">
+            <button class="btn btn-outline-success" type="submit">Submit</button>
+        </form>
+    <input class="form-control me-2 d-flex" type="search" placeholder="Короткая ссылка" value="{{ short_url }}" aria-label="Search">
+    {% if short_url %}
+        <a type="button" href="{{ short_url }}"><button class="btn btn-outline-success" type="submit">Перейти</button></a>
+    {% endif %}
+    </div>
+{% endblock body %}
